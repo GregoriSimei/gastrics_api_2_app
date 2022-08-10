@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.validate": ["typescript", "javascript"],
+  "jest.jestCommandLine": "yarn test",
+  "jest.showCoverageOnLoad": true
+}
