@@ -36,9 +36,11 @@ export class FirebaseImplementation implements ICompanyRepository {
     throw new Error('Method not implemented.');
   }
 
-  findById(id: string): Promise<ICompany | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<any | null> {
+    const company = await db.collection('companies').doc(id).get();
+    return company;
   }
+
   // example
   // async getCities(dbInstance: any) {
   //   const citiesCol = collection(dbInstance, 'cities');

@@ -25,4 +25,9 @@ routes.post(
     */
 );
 
+routes.get(
+  '/companies/:id',
+  companyController.getById.bind(companyController),
+);
+
 export { routes };

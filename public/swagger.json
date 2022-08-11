@@ -48,6 +48,13 @@
           }
         }
       }
+    },
+    "/gastrics/api/companies/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
     }
   },
   "components": {

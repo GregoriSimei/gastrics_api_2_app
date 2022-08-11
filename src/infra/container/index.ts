@@ -1,5 +1,6 @@
 import { container, Lifecycle } from 'tsyringe';
 import { CreateCompany } from '../../application/use-cases/createCompany';
+import { FindCompanyById } from '../../application/use-cases/findCompanyById';
 import { FirebaseImplementation } from '../firebase/FirebaseImplementation';
 import { PubSubImplementation } from '../pubsub/PubSubImplementation';
 
@@ -15,6 +16,14 @@ container.register(
   'ICreateCompany',
   {
     useClass: CreateCompany,
+  },
+  { lifecycle: Lifecycle.Singleton },
+);
+
+container.register(
+  'IFindCompanyById',
+  {
+    useClass: FindCompanyById,
   },
   { lifecycle: Lifecycle.Singleton },
 );
