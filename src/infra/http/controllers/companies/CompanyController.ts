@@ -12,6 +12,6 @@ export default class CompanyController {
   async create(request: Request, response: Response) {
     const payload = request.body;
     const result = await this.createCompanyUseCase.execute(payload);
-    return response.status(200).json({ messageId: result });
+    return response.status(200).json(result);
   }
 }

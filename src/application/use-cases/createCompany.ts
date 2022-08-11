@@ -1,16 +1,16 @@
 import { inject, injectable } from 'tsyringe';
-import { IPubSub } from '../../infra/pubsub/IPubSub';
+import { ICompanyRepository } from '../repositories/ICompanyRepository';
 import { ICreateCompany } from './ICreateCompany';
 
 @injectable()
 export class CreateCompany implements ICreateCompany {
   constructor(
-    @inject('IPubSub')
-    private pubSub: IPubSub,
+    @inject('ICreateCompanyRepository')
+    private companyRepository: ICompanyRepository,
   ) { }
 
   async execute(company: any): Promise<any> {
-    // salvar no firebase
-    return {};
+    const res = this.companyRepository.create(company);
+    return res;
   }
 }
