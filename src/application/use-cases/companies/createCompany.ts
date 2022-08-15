@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { ICompanyRepository } from '../repositories/ICompanyRepository';
+import { ICompanyRepository } from '../../repositories/ICompanyRepository';
 import { ICreateCompany } from './ICreateCompany';
 
 @injectable()

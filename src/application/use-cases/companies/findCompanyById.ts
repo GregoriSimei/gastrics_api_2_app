@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { ICompanyRepository } from '../repositories/ICompanyRepository';
-import { IFindCompanyById } from './companies/IFindCompany';
+import { ICompanyRepository } from '../../repositories/ICompanyRepository';
+import { IFindCompanyById } from './IFindCompany';
 
 @injectable()
 export class FindCompanyById implements IFindCompanyById {

@@ -1,8 +1,8 @@
 import { container, Lifecycle } from 'tsyringe';
-import { CreateCompany } from '../../application/use-cases/createCompany';
-import { FindCompanyById } from '../../application/use-cases/findCompanyById';
-import { FirebaseImplementation } from '../firebase/FirebaseImplementation';
+import { CreateCompany } from '../../application/use-cases/companies/createCompany';
+import { FindCompanyById } from '../../application/use-cases/companies/findCompanyById';
 import { PubSubImplementation } from '../pubsub/PubSubImplementation';
+import CompanyRepository from '../repository/database/CompanyRepository';
 
 container.register(
   'IPubSub',
@@ -31,7 +31,7 @@ container.register(
 container.register(
   'ICreateCompanyRepository',
   {
-    useClass: FirebaseImplementation,
+    useClass: CompanyRepository,
   },
   { lifecycle: Lifecycle.Singleton },
 );

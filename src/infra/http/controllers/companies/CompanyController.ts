@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
+import { ICreateCompany } from '../../../../application/use-cases/companies/ICreateCompany';
 import { IFindCompanyById } from '../../../../application/use-cases/companies/IFindCompany';
-import { ICreateCompany } from '../../../../application/use-cases/ICreateCompany';
 
 @injectable()
 export default class CompanyController {

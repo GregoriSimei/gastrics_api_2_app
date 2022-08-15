@@ -40,12 +40,4 @@ export class FirebaseImplementation implements ICompanyRepository {
     const company = await db.collection('companies').doc(id).get();
     return company;
   }
-
-  // example
-  // async getCities(dbInstance: any) {
-  //   const citiesCol = collection(dbInstance, 'cities');
-  //   const citySnapshot = await getDocs(citiesCol);
-  //   const cityList = citySnapshot.docs.map((doc) => doc.data());
-  //   return cityList;
-  // }
 }
