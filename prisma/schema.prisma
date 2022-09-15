@@ -19,3 +19,60 @@ model Company {
 
   @@map("companies")
 }
+
+model Branch {
+  id              String    @id @default(uuid())
+  name            String  
+  address         String    @unique
+  employees       Employee[]    
+  cylinders       Cylinder[] 
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+
+  @@map("branches")
+} 
+
+
+model Employee {
+  id              String    @id @default(uuid())
+  name            String  
+  last_name       String  
+  type            String  
+  birth           DateTime  
+  cpf             String    @unique
+  branch          Branch[]
+  user            User?
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+
+  @@map("employees")
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  pass            String    
+  active          Boolean
+  key             String
+  employee        Employee? @relation(fields: [employee_id], references: [id])
+  employee_id     String    @unique
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+
+  @@map("users")
+}
+
+model Cylinder {
+  id              String    @id @default(uuid())
+  ex_id           String    @unique  
+  type            String    
+  weight_actual   Boolean
+  weight_full     Boolean
+  weight_shell    Boolean
+  branch          Branch    @relation(fields: [branch_id], references: [id])
+  branch_id       String    @unique
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+
+  @@map("cylinders")
+}
