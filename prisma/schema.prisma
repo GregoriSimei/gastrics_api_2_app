@@ -66,9 +66,9 @@ model Cylinder {
   id              String    @id @default(uuid())
   ex_id           String    @unique  
   type            String    
-  weight_actual   Boolean
-  weight_full     Boolean
-  weight_shell    Boolean
+  weight_actual   Float
+  weight_full     Float
+  weight_shell    Float
   branch          Branch    @relation(fields: [branch_id], references: [id])
   branch_id       String    @unique
   created_at      DateTime  @default(now())
