@@ -6,5 +6,5 @@ export interface IUser extends IDatabaseItem {
     pass: string;
     active: Boolean;
     key: string;
-    employee: IEmployee;
+    employee?: IEmployee;
 }
