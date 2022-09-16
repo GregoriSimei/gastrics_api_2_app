@@ -7,5 +7,5 @@ export interface IEmployee extends IDatabaseItem {
     type: string;
     birth: Date; 
     cpf: string;
-    branch: IBranch[];
+    branches?: IBranch[];
 }
