@@ -1,8 +1,6 @@
 import { ICompany } from '../dtos/ICompany';
+import { IGenericRepository } from './IGenericRepository';
 
-export interface ICompanyRepository {
-  create(company: ICompany): Promise<any>;
-  delete(id: string): Promise<void>;
-  update(id: string, data: object): Promise<ICompany>;
-  findById(id: string): Promise<any | null>;
+export interface ICompanyRepository extends IGenericRepository<ICompany> {
+  findByCPNJ(cnpj: string): Promise<ICompany | null>;
 }
