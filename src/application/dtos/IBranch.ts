@@ -5,6 +5,6 @@ import { IEmployee } from "./IEmployee";
 export interface IBranch extends IDatabaseItem {
     name: string;
     address: string;
-    employees: IEmployee[];   
-    cylinders: ICylinder[];
+    employees?: IEmployee[];   
+    cylinders?: ICylinder[];
 }
