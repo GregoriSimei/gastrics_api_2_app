@@ -1,10 +1,8 @@
 import { IDatabaseItem } from "./IDatabaseItem";
-import { IEmployee } from "./IEmployee";
 
 export interface IUser extends IDatabaseItem {
     email: string;
     pass: string;
-    active: Boolean;
+    active: boolean;
     key: string;
-    employee?: IEmployee;
 }
