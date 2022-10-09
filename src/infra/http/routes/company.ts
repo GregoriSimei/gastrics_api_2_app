@@ -35,4 +35,9 @@ route.delete(
   companyController.delete.bind(companyController),
 );
 
+route.put(
+  '',
+  companyController.update.bind(companyController),
+);
+
 export default route;
