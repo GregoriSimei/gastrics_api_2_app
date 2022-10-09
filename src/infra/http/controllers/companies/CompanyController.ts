@@ -19,7 +19,7 @@ export default class CompanyController {
   }
 
   async getById(request: Request, response: Response) {
-    const id = request.query as unknown as string;
+    const id = request.query.id as string;
     const result = await this.findCompanyUseCase.execute(id);
     return response.status(200).json(result);
   }
