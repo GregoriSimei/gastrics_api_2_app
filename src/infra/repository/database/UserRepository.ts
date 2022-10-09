@@ -1,53 +1,53 @@
-import { IUser } from "src/application/dtos/IUser";
-import { IUserRepository } from "src/application/repositories/IUserRepository";
-import { prisma } from "./prismaClient";
+import { IUser } from 'src/application/dtos/IUser';
+import { IUserRepository } from 'src/application/repositories/IUserRepository';
+import { prisma } from './prismaClient';
 
 export class UserRespository implements IUserRepository {
-    async create(data: IUser): Promise<IUser> {
-        const userCreated = await prisma.user.create({ data });
-        return userCreated;
-    }
+  async create(data: IUser): Promise<IUser> {
+    const userCreated = await prisma.user.create({ data });
+    return userCreated;
+  }
 
-    async update(id: string, data: IUser): Promise<IUser> {
-        const userUpdated = await prisma.user.update({
-            where: {
-                id,
-            },
-            data,
-        });
+  async update(id: string, data: IUser): Promise<IUser> {
+    const userUpdated = await prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
 
-        return userUpdated;
-    }
+    return userUpdated;
+  }
 
-    async findAll(): Promise<IUser[]> {
-        const users = await prisma.user.findMany({});
+  async findAll(): Promise<IUser[]> {
+    const users = await prisma.user.findMany({});
 
-        return users;
-    }
+    return users;
+  }
 
-    async findById(id: string): Promise<IUser | null> {
-        const userFound = await prisma.user.findUnique({
-            where: { id },
-        });
+  async findById(id: string): Promise<IUser | null> {
+    const userFound = await prisma.user.findUnique({
+      where: { id },
+    });
 
-        return userFound;
-    }
+    return userFound;
+  }
 
-    async delete(id: string): Promise<IUser> {
-        const userDeleted = await prisma.user.delete({
-            where: { id },
-        });
+  async delete(id: string): Promise<IUser> {
+    const userDeleted = await prisma.user.delete({
+      where: { id },
+    });
 
-        return userDeleted;
-    }
+    return userDeleted;
+  }
 
-    async findByEmail(email: string): Promise<IUser | null> {
-        const userFound = await prisma.user.findUnique({
-            where: {
-                email,
-            },
-        });
+  async findByEmail(email: string): Promise<IUser | null> {
+    const userFound = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
 
-        return userFound;
-    }
+    return userFound;
+  }
 }
