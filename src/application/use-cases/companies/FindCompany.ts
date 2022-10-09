@@ -10,7 +10,7 @@ export class FindCompanyUseCase implements IFindCompany {
     private companyRepository: ICompanyRepository,
   ) { }
 
-  async execute(id?: string, cnpj?: string): Promise<ICompany | ICompany[] | null> {
+  async execute(id: string, cnpj: string): Promise<ICompany | ICompany[] | null> {
     // eslint-disable-next-line no-nested-ternary
     const response = id
       ? await this.companyRepository.findById(id)

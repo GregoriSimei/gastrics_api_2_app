@@ -49,4 +49,9 @@ export default class CompanyRepository implements ICompanyRepository {
 
     return companyFound;
   }
+
+  async deleteByCNPJ(cnpj: string): Promise<ICompany> {
+    const deletedCompany = await prisma.company.delete({ where: { cnpj } });
+    return deletedCompany;
+  }
 }
