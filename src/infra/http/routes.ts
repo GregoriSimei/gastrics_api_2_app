@@ -10,7 +10,7 @@ const routes = Router();
 const companyController = container.resolve(CreateCompanyController);
 
 routes.post(
-  '/companies',
+  '/company',
   validatePayload(createCompanySchema),
   companyController.create.bind(companyController),
   /* #swagger.tags = ['Company']
@@ -26,7 +26,7 @@ routes.post(
 );
 
 routes.get(
-  '/companies/:id',
+  '/company',
   companyController.getById.bind(companyController),
 );
 

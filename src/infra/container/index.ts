@@ -1,6 +1,8 @@
 import { container, Lifecycle } from 'tsyringe';
-import { CreateCompany } from '../../application/use-cases/companies/createCompany';
+import { CreateCompanyUseCase } from '../../application/use-cases/companies/CreateCompany';
+import { FindCompanyUseCase } from '../../application/use-cases/companies/FindCompany';
 import { PubSubImplementation } from '../pubsub/PubSubImplementation';
+import CompanyRepository from '../repository/database/CompanyRepository';
 
 container.register(
   'IPubSub',
@@ -13,7 +15,23 @@ container.register(
 container.register(
   'ICompanyRepository',
   {
-    useClass: CreateCompany,
+    useClass: CompanyRepository,
+  },
+  { lifecycle: Lifecycle.Singleton },
+);
+
+container.register(
+  'ICreateCompanyUseCase',
+  {
+    useClass: CreateCompanyUseCase,
+  },
+  { lifecycle: Lifecycle.Singleton },
+);
+
+container.register(
+  'IFindCompanyUseCase',
+  {
+    useClass: FindCompanyUseCase,
   },
   { lifecycle: Lifecycle.Singleton },
 );

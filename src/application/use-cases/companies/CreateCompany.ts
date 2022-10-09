@@ -1,16 +1,17 @@
+import { ICompany } from 'src/application/dtos/ICompany';
 import { inject, injectable } from 'tsyringe';
 import { ICompanyRepository } from '../../repositories/ICompanyRepository';
 import { ICreateCompany } from './ICreateCompany';
 
 @injectable()
-export class CreateCompany implements ICreateCompany {
+export class CreateCompanyUseCase implements ICreateCompany {
   constructor(
-    @inject('ICreateCompanyRepository')
+    @inject('ICompanyRepository')
     private companyRepository: ICompanyRepository,
   ) { }
 
-  async execute(company: any): Promise<any> {
-    const res = this.companyRepository.create(company);
+  async execute(company: ICompany): Promise<ICompany> {
+    const res = await this.companyRepository.create(company);
     return res;
   }
 }

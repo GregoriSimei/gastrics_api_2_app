@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
+import { ICreateCompany } from 'src/application/use-cases/companies/ICreateCompany';
+import { IFindCompany } from 'src/application/use-cases/companies/IFindCompany';
 import { inject, injectable } from 'tsyringe';
-import { ICreateCompany } from '../../../../application/use-cases/companies/ICreateCompany';
-import { IFindCompanyById } from '../../../../application/use-cases/companies/IFindCompany';
 
 @injectable()
 export default class CompanyController {
   constructor(
-    @inject('ICreateCompany')
+    @inject('ICreateCompanyUseCase')
     private createCompanyUseCase: ICreateCompany,
-    @inject('IFindCompanyById')
-    private IFindCompanyByIdUseCase: IFindCompanyById,
+    @inject('IFindCompanyUseCase')
+    private findCompanyUseCase: IFindCompany,
   ) { }
 
   async create(request: Request, response: Response) {
@@ -19,8 +19,8 @@ export default class CompanyController {
   }
 
   async getById(request: Request, response: Response) {
-    const { id } = request.params;
-    const result = await this.IFindCompanyByIdUseCase.execute(id);
+    const id = request.query as unknown as string;
+    const result = await this.findCompanyUseCase.execute(id);
     return response.status(200).json(result);
   }
 }
