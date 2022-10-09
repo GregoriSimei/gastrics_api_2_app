@@ -27,7 +27,7 @@ routes.post(
 
 routes.get(
   '/company',
-  companyController.getById.bind(companyController),
+  companyController.get.bind(companyController),
 );
 
 export { routes };
