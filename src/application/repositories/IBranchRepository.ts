@@ -1,6 +1,4 @@
-import { IBranch } from "../dtos/IBranch";
-import { IGenericRepository } from "./IGenericRepository";
+import { IBranch } from '../dtos/IBranch';
+import { IGenericRepository } from './IGenericRepository';
 
-export interface IBranchRepository extends IGenericRepository<IBranch> {
-    
-}
+export type IBranchRepository = IGenericRepository<IBranch>

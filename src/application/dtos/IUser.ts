@@ -1,4 +1,4 @@
-import { IDatabaseItem } from "./IDatabaseItem";
+import { IDatabaseItem } from './IDatabaseItem';
 
 export interface IUser extends IDatabaseItem {
     email: string;
