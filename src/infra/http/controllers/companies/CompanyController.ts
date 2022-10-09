@@ -20,7 +20,8 @@ export default class CompanyController {
 
   async get(request: Request, response: Response) {
     const id = request.query.id as string;
-    const result = await this.findCompanyUseCase.execute(id);
+    const cnpj = request.query.cnpj as string;
+    const result = await this.findCompanyUseCase.execute(id, cnpj);
     return response.status(200).json(result);
   }
 }
