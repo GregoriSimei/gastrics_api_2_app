@@ -8,4 +8,8 @@ export interface IEmployee extends IDatabaseItem {
     birth: Date;
     cpf: string;
     branches?: IBranch[];
+    email: string;
+    pass: string;
+    active: boolean;
+    key: string;
 }
