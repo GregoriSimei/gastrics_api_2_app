@@ -12,10 +12,10 @@ export default class CompanyRepository implements ICompanyRepository {
 
   async update(id: string, data: ICompany): Promise<ICompany> {
     const companyUpdated = await prisma.company.update({
-        where: {
-          id
-        },
-        data,
+      where: {
+        id,
+      },
+      data,
     });
 
     return companyUpdated;
@@ -29,7 +29,7 @@ export default class CompanyRepository implements ICompanyRepository {
     const companyFound = await prisma.company.findUnique({
       where: {
         id,
-      }
+      },
     });
 
     return companyFound;
@@ -43,10 +43,15 @@ export default class CompanyRepository implements ICompanyRepository {
   async findByCPNJ(cnpj: string): Promise<ICompany | null> {
     const companyFound = await prisma.company.findUnique({
       where: {
-        cnpj
-      }
+        cnpj,
+      },
     });
 
     return companyFound;
+  }
+
+  async deleteByCNPJ(cnpj: string): Promise<ICompany> {
+    const deletedCompany = await prisma.company.delete({ where: { cnpj } });
+    return deletedCompany;
   }
 }

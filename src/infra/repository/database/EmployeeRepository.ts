@@ -1,57 +1,57 @@
-import { IEmployee } from "src/application/dtos/IEmployee";
-import { IEmployeeRepository } from "src/application/repositories/IEmployeeRepository";
-import { prisma } from "./prismaClient";
+import { IEmployee } from 'src/application/dtos/IEmployee';
+import { IEmployeeRepository } from 'src/application/repositories/IEmployeeRepository';
+import { prisma } from './prismaClient';
 
 export class EmployeeRepository implements IEmployeeRepository {
-    async create(data: IEmployee): Promise<IEmployee> {
-        const employeeCreated = await prisma.employee.create({ data });
-        return employeeCreated;
-    }
+  async create(data: IEmployee): Promise<IEmployee> {
+    const employeeCreated = await prisma.employee.create({ data });
+    return employeeCreated;
+  }
 
-    async update(id: string, data: IEmployee): Promise<IEmployee> {
-        const employeeUpdated = await prisma.employee.update({
-            where: {
-                id,
-            },
-            data,
-        });
+  async update(id: string, data: IEmployee): Promise<IEmployee> {
+    const employeeUpdated = await prisma.employee.update({
+      where: {
+        id,
+      },
+      data,
+    });
 
-        return employeeUpdated;
-    }
+    return employeeUpdated;
+  }
 
-    async findAll(): Promise<IEmployee[]> {
-        const employees = await prisma.employee.findMany({});
-        
-        return employees;
-    }
+  async findAll(): Promise<IEmployee[]> {
+    const employees = await prisma.employee.findMany({});
 
-    async findById(id: string): Promise<IEmployee | null> {
-        const employeeFound = await prisma.employee.findUnique({
-            where: {
-                id,
-            },
-        });
+    return employees;
+  }
 
-        return employeeFound;
-    }
+  async findById(id: string): Promise<IEmployee | null> {
+    const employeeFound = await prisma.employee.findUnique({
+      where: {
+        id,
+      },
+    });
 
-    async delete(id: string): Promise<IEmployee> {
-        const employeeDeleted = await prisma.employee.delete({
-            where: {
-                id,
-            },
-        });
+    return employeeFound;
+  }
 
-        return employeeDeleted;
-    }
+  async delete(id: string): Promise<IEmployee> {
+    const employeeDeleted = await prisma.employee.delete({
+      where: {
+        id,
+      },
+    });
 
-    async findByCPF(cpf: string): Promise<IEmployee | null> {
-        const employeeFound = await prisma.employee.findUnique({
-            where: {
-                cpf,
-            },
-        });
+    return employeeDeleted;
+  }
 
-        return employeeFound;
-    }
+  async findByCPF(cpf: string): Promise<IEmployee | null> {
+    const employeeFound = await prisma.employee.findUnique({
+      where: {
+        cpf,
+      },
+    });
+
+    return employeeFound;
+  }
 }

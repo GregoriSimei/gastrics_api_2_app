@@ -17,7 +17,7 @@
     }
   ],
   "paths": {
-    "/gastrics/api/companies": {
+    "/gastrics/api/company": {
       "post": {
         "tags": [
           "Company"
@@ -47,9 +47,7 @@
             }
           }
         }
-      }
-    },
-    "/gastrics/api/companies/{id}": {
+      },
       "get": {
         "description": "",
         "parameters": [],
