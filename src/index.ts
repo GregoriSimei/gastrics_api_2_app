@@ -1,6 +1,7 @@
 /* eslint-disable import/first */
 import * as dotenv from 'dotenv';
 import 'reflect-metadata';
+import './infra/repository/database/typeORMClient';
 
 dotenv.config();
 

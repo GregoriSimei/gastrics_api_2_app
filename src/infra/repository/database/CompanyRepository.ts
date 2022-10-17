@@ -1,32 +1,36 @@
+import { Repository } from 'typeorm';
 import { ICompany } from '../../../application/dtos/ICompany';
 import { ICompanyRepository } from '../../../application/repositories/ICompanyRepository';
-import { prisma } from './prismaClient';
+import { Company } from '../models/Company';
+import datasource from './typeORMClient';
 
 export default class CompanyRepository implements ICompanyRepository {
+  constructor(
+    private companyRepository: Repository<Company> = datasource.getRepository(Company),
+  ) {}
+
   async create(company: ICompany): Promise<ICompany> {
-    const newCompany = await prisma.company.create({
-      data: company,
-    });
+    const newCompany = await this.companyRepository.save(company);
     return newCompany;
   }
 
-  async update(id: string, data: ICompany): Promise<ICompany> {
-    const companyUpdated = await prisma.company.update({
-      where: {
-        id,
-      },
+  async update(id: string, data: ICompany): Promise<ICompany | null> {
+    await this.companyRepository.update(
+      id,
       data,
-    });
+    );
 
-    return companyUpdated;
+    const companyFound = await this.findById(id);
+
+    return companyFound;
   }
 
   async findAll(): Promise<ICompany[]> {
-    return prisma.company.findMany({});
+    return this.companyRepository.find({});
   }
 
   async findById(id: string): Promise<ICompany | null> {
-    const companyFound = await prisma.company.findUnique({
+    const companyFound = await this.companyRepository.findOne({
       where: {
         id,
       },
@@ -35,13 +39,12 @@ export default class CompanyRepository implements ICompanyRepository {
     return companyFound;
   }
 
-  async delete(id: string): Promise<ICompany> {
-    const deletedCompany = await prisma.company.delete({ where: { id } });
-    return deletedCompany;
+  async delete(id: string): Promise<void> {
+    await this.companyRepository.delete(id);
   }
 
   async findByCPNJ(cnpj: string): Promise<ICompany | null> {
-    const companyFound = await prisma.company.findUnique({
+    const companyFound = await this.companyRepository.findOne({
       where: {
         cnpj,
       },
@@ -50,8 +53,7 @@ export default class CompanyRepository implements ICompanyRepository {
     return companyFound;
   }
 
-  async deleteByCNPJ(cnpj: string): Promise<ICompany> {
-    const deletedCompany = await prisma.company.delete({ where: { cnpj } });
-    return deletedCompany;
+  async deleteByCNPJ(cnpj: string): Promise<void> {
+    await this.companyRepository.delete({ cnpj });
   }
 }

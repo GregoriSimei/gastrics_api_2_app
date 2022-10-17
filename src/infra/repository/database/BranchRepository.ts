@@ -1,34 +1,33 @@
 import { IBranch } from 'src/application/dtos/IBranch';
 import { IBranchRepository } from 'src/application/repositories/IBranchRepository';
-import { prisma } from './prismaClient';
+import { Repository } from 'typeorm';
+import { Branch } from '../models/Branch';
+import datasource from './typeORMClient';
 
 export class BranchRepository implements IBranchRepository {
+  constructor(
+    private branchRepository: Repository<Branch> = datasource.getRepository(Branch),
+  ) {}
+
   async create(data: IBranch): Promise<IBranch> {
-    const createdBranch = await prisma.branch.create({
-      data,
-    });
+    const createdBranch = await this.branchRepository.save(data);
 
     return createdBranch;
   }
 
-  async update(id: string, data: IBranch): Promise<IBranch> {
-    const updatedBranch = await prisma.branch.update({
-      where: {
-        id,
-      },
-      data,
-    });
+  async update(id: string, data: IBranch): Promise<IBranch | null> {
+    await this.branchRepository.update(id, data);
 
-    return updatedBranch;
+    return this.findById(id);
   }
 
   async findAll(): Promise<IBranch[]> {
-    const branches = await prisma.branch.findMany({});
+    const branches = await this.branchRepository.find({});
     return branches;
   }
 
   async findById(id: string): Promise<IBranch | null> {
-    const branchFound = await prisma.branch.findUnique({
+    const branchFound = await this.branchRepository.findOne({
       where: {
         id,
       },
@@ -37,13 +36,7 @@ export class BranchRepository implements IBranchRepository {
     return branchFound;
   }
 
-  async delete(id: string): Promise<IBranch> {
-    const deleted = await prisma.branch.delete({
-      where: {
-        id,
-      },
-    });
-
-    return deleted;
+  async delete(id: string): Promise<void> {
+    await this.branchRepository.delete(id);
   }
 }
