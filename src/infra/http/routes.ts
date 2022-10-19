@@ -7,6 +7,6 @@ import company from './routes/company';
 const routes = Router();
 
 routes.use('/company', company);
-routes.use('/branch', branch);
+routes.use('/company', branch);
 
 export { routes };

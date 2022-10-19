@@ -10,7 +10,7 @@ export class BranchController {
   ) {}
 
   async create(request: Request, response: Response) {
-    const id = request.query.id as string;
+    const id = request.params.companyId as string;
     const payload = request.body;
     const result = await this.createBranchUseCase.execute(id, payload);
     return response.status(200).json(result);
