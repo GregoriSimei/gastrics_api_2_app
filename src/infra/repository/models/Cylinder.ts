@@ -1,13 +1,13 @@
 import { IBranch } from 'src/application/dtos/IBranch';
 import { ICylinder } from 'src/application/dtos/ICylinder';
 import {
-    Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn
+  Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn
 } from 'typeorm';
 import { Branch } from './Branch';
 
 @Entity('cylinders')
 export class Cylinder implements ICylinder {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
       id?: string | undefined;
 
     @Column()

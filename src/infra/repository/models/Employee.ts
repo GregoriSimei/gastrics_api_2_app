@@ -1,13 +1,13 @@
 import { ICompany } from 'src/application/dtos/ICompany';
 import { IEmployee } from 'src/application/dtos/IEmployee';
 import {
-  Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn
+  Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn
 } from 'typeorm';
 import { Company } from './Company';
 
 @Entity('employees')
 export class Employee implements IEmployee {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
       id?: string | undefined;
 
     @Column()
@@ -25,7 +25,7 @@ export class Employee implements IEmployee {
     @Column()
       cpf!: string;
 
-    @OneToMany(() => Company, (company) => company.employees)
+    @ManyToOne(() => Company, (company) => company.employees)
       company!: ICompany;
 
     @Column()

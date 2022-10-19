@@ -2,14 +2,14 @@ import { IBranch } from 'src/application/dtos/IBranch';
 import { ICompany } from 'src/application/dtos/ICompany';
 import { ICylinder } from 'src/application/dtos/ICylinder';
 import {
-    Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn
+  Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn
 } from 'typeorm';
 import { Company } from './Company';
 import { Cylinder } from './Cylinder';
 
 @Entity('branches')
 export class Branch implements IBranch {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
       id?: string | undefined;
 
     @Column()

@@ -1,5 +1,5 @@
-import { typeormConfig } from 'src/config/typeORMConfig';
 import { DataSource } from 'typeorm';
+import { typeormConfig } from '../../../config/typeORMConfig';
 
 const datasource = new DataSource(typeormConfig);
 datasource.initialize()
@@ -9,8 +9,8 @@ datasource.initialize()
     },
   )
   .catch(
-    () => {
-      console.log('Error to connect Database');
+    (err) => {
+      console.log('Error to connect Database', err);
     },
   );
 

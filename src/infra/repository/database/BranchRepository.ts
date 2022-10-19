@@ -36,6 +36,10 @@ export class BranchRepository implements IBranchRepository {
     return branchFound;
   }
 
+  async findByAddress(address: string): Promise<IBranch | null> {
+    return this.branchRepository.findOne({ where: { address } });
+  }
+
   async delete(id: string): Promise<void> {
     await this.branchRepository.delete(id);
   }
