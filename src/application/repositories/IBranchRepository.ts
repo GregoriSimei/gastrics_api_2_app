@@ -1,4 +1,6 @@
 import { IBranch } from '../dtos/IBranch';
 import { IGenericRepository } from './IGenericRepository';
 
-export type IBranchRepository = IGenericRepository<IBranch>
+export interface IBranchRepository extends IGenericRepository<IBranch> {
+    findByAddress(address: string): Promise<IBranch | null>;
+}

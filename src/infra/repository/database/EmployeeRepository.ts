@@ -1,32 +1,38 @@
 import { IEmployee } from 'src/application/dtos/IEmployee';
 import { IEmployeeRepository } from 'src/application/repositories/IEmployeeRepository';
-import { prisma } from './prismaClient';
+import { Repository } from 'typeorm';
+import { Employee } from '../models/Employee';
+import datasource from './typeORMClient';
 
 export class EmployeeRepository implements IEmployeeRepository {
+  constructor(
+    private employeeRepository: Repository<Employee> = datasource.getRepository(Employee),
+  ) {}
+
   async create(data: IEmployee): Promise<IEmployee> {
-    const employeeCreated = await prisma.employee.create({ data });
+    const employeeCreated = await this.employeeRepository.save(data);
     return employeeCreated;
   }
 
-  async update(id: string, data: IEmployee): Promise<IEmployee> {
-    const employeeUpdated = await prisma.employee.update({
-      where: {
-        id,
-      },
+  async update(id: string, data: IEmployee): Promise<IEmployee| null> {
+    await this.employeeRepository.update(
+      id,
       data,
-    });
+    );
+
+    const employeeUpdated = await this.findById(id);
 
     return employeeUpdated;
   }
 
   async findAll(): Promise<IEmployee[]> {
-    const employees = await prisma.employee.findMany({});
+    const employees = await this.employeeRepository.find({});
 
     return employees;
   }
 
   async findById(id: string): Promise<IEmployee | null> {
-    const employeeFound = await prisma.employee.findUnique({
+    const employeeFound = await this.employeeRepository.findOne({
       where: {
         id,
       },
@@ -35,18 +41,14 @@ export class EmployeeRepository implements IEmployeeRepository {
     return employeeFound;
   }
 
-  async delete(id: string): Promise<IEmployee> {
-    const employeeDeleted = await prisma.employee.delete({
-      where: {
-        id,
-      },
-    });
-
-    return employeeDeleted;
+  async delete(id: string): Promise<void> {
+    await this.employeeRepository.delete(
+      id,
+    );
   }
 
   async findByCPF(cpf: string): Promise<IEmployee | null> {
-    const employeeFound = await prisma.employee.findUnique({
+    const employeeFound = await this.employeeRepository.findOne({
       where: {
         cpf,
       },
