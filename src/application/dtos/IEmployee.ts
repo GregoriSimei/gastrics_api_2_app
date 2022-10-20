@@ -1,15 +1,15 @@
-import { IBranch } from './IBranch';
+import { ICompany } from './ICompany';
 import { IDatabaseItem } from './IDatabaseItem';
 
 export interface IEmployee extends IDatabaseItem {
     name: string;
-    last_name: string;
+    lastName: string;
     type: string;
     birth: Date;
     cpf: string;
-    branches?: IBranch[];
     email: string;
     pass: string;
-    active: boolean;
-    key: string;
+    active?: boolean;
+    key?: string;
+    company ?: ICompany;
 }

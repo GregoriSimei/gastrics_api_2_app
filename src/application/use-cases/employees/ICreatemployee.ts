@@ -1,5 +1,5 @@
 import { IEmployee } from 'src/application/dtos/IEmployee';
 
 export interface ICreateEmployee {
-    execute(employee: IEmployee): Promise<IEmployee>;
+    execute(companyId:string, employee: IEmployee): Promise<IEmployee>;
 }

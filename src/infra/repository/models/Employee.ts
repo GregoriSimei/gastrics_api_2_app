@@ -13,13 +13,13 @@ export class Employee implements IEmployee {
     @Column()
       name!: string;
 
-    @Column()
-      last_name!: string;
+    @Column({ name: 'last_name' })
+      lastName!: string;
 
     @Column()
       type!: string;
 
-    @Column()
+    @Column({ type: Date })
       birth!: Date;
 
     @Column()
@@ -34,10 +34,10 @@ export class Employee implements IEmployee {
     @Column()
       pass!: string;
 
-    @Column()
+    @Column('boolean', { default: true })
       active!: boolean;
 
-    @Column()
+    @Column({ default: null })
       key!: string;
 
     @UpdateDateColumn()
