@@ -63,6 +63,18 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/gastrics/api/company/{companyId}/branch": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
     }
   },
   "components": {

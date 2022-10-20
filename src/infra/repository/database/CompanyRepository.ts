@@ -26,7 +26,7 @@ export default class CompanyRepository implements ICompanyRepository {
   }
 
   async findAll(): Promise<ICompany[]> {
-    return this.companyRepository.find({});
+    return this.companyRepository.find({ relations: ['branches', 'employees'] });
   }
 
   async findById(id: string): Promise<ICompany | null> {
@@ -34,6 +34,7 @@ export default class CompanyRepository implements ICompanyRepository {
       where: {
         id,
       },
+      relations: ['branches', 'employees'],
     });
 
     return companyFound;
@@ -48,6 +49,7 @@ export default class CompanyRepository implements ICompanyRepository {
       where: {
         cnpj,
       },
+      relations: ['branches', 'employees'],
     });
 
     return companyFound;

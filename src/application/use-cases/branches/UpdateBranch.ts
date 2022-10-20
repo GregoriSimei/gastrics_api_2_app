@@ -3,10 +3,10 @@ import { IBranchRepository } from 'src/application/repositories/IBranchRepositor
 import { ICompanyRepository } from 'src/application/repositories/ICompanyRepository';
 import { inject, injectable } from 'tsyringe';
 import { ValidationError } from 'yup';
-import { ICreateBranch } from './ICreateBranch';
+import { IUpdateBranch } from './IUpdateBranch';
 
 @injectable()
-export class CreateBranchUseCase implements ICreateBranch {
+export class UpdateBranchUseCase implements IUpdateBranch {
   constructor(
         @inject('IBranchRepository')
         private branchRepository: IBranchRepository,
@@ -15,29 +15,35 @@ export class CreateBranchUseCase implements ICreateBranch {
   ) {}
 
   async execute(companyId: string, branch: IBranch): Promise<IBranch> {
-    if (!companyId || !branch) {
+    const { id } = branch;
+
+    if (!companyId || !branch || !id) {
       throw new ValidationError('Invalid parameters');
     }
 
-    const branchToCreate = branch;
+    const branchToUpdate = branch;
     const companyFound = await this.companyRepository.findById(companyId);
 
     if (!companyFound) {
       throw new ValidationError('Company not exist');
     }
 
-    const { address } = branchToCreate;
+    const branchFound = await this.branchRepository.findById(id);
 
-    const branchFound = await this.branchRepository.findByAddress(companyId, address);
-
-    if (branchFound) {
-      throw new ValidationError('Branch already exist');
+    if (!branchFound) {
+      throw new ValidationError('Branch not found');
     }
 
-    branchToCreate.company = companyFound;
+    if (companyId !== branchFound.company.id) {
+      throw new ValidationError('Branch not found');
+    }
 
-    const branchCreated = await this.branchRepository.create(branchToCreate);
+    const branchUpdated = await this.branchRepository.update(id, branchToUpdate);
 
-    return branchCreated;
+    if (!branchUpdated) {
+      throw new Error('Error to update');
+    }
+
+    return branchUpdated;
   }
 }

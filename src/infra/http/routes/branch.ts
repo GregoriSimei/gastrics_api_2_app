@@ -7,6 +7,9 @@ const route = Router();
 
 const branchController = container.resolve(BranchController);
 
-route.post('', branchController.create.bind(branchController));
+route.post('/:companyId/branch', branchController.create.bind(branchController));
+route.put('/:companyId/branch', branchController.update.bind(branchController));
+route.get('/:companyId/branch', branchController.find.bind(branchController));
+route.delete('/:companyId/branch', branchController.delete.bind(branchController));
 
 export default route;

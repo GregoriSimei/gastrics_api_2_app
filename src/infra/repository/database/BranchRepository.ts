@@ -16,13 +16,13 @@ export class BranchRepository implements IBranchRepository {
   }
 
   async update(id: string, data: IBranch): Promise<IBranch | null> {
-    await this.branchRepository.update(id, data);
+    await this.branchRepository.update(id, { ...data });
 
     return this.findById(id);
   }
 
   async findAll(): Promise<IBranch[]> {
-    const branches = await this.branchRepository.find({});
+    const branches = await this.branchRepository.find({ relations: ['company', 'cylinders'] });
     return branches;
   }
 
@@ -31,13 +31,14 @@ export class BranchRepository implements IBranchRepository {
       where: {
         id,
       },
+      relations: ['company', 'cylinders'],
     });
 
     return branchFound;
   }
 
-  async findByAddress(address: string): Promise<IBranch | null> {
-    return this.branchRepository.findOne({ where: { address } });
+  async findByAddress(companyId: string, address: string): Promise<IBranch | null> {
+    return this.branchRepository.findOne({ where: { address, company: { id: companyId } }, relations: ['company'], loadRelationIds: true });
   }
 
   async delete(id: string): Promise<void> {
