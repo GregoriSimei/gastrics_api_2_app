@@ -1,5 +1,6 @@
 import { container, Lifecycle } from 'tsyringe';
 import { CreateBranchUseCase } from '../../application/use-cases/branches/CreateBranch';
+import { DeleteBranchUseCase } from '../../application/use-cases/branches/DeleteBranch';
 import { FindBranchUseCase } from '../../application/use-cases/branches/FindBranch';
 import { UpdateBranchUseCase } from '../../application/use-cases/branches/UpdateBranch';
 import { BranchRepository } from '../repository/database/BranchRepository';
@@ -32,6 +33,14 @@ container.register(
   'IFindBranchUseCase',
   {
     useClass: FindBranchUseCase,
+  },
+  { lifecycle: Lifecycle.Singleton },
+);
+
+container.register(
+  'IDeleteBranchUseCase',
+  {
+    useClass: DeleteBranchUseCase,
   },
   { lifecycle: Lifecycle.Singleton },
 );
