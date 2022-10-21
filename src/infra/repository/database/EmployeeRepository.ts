@@ -17,7 +17,7 @@ export class EmployeeRepository implements IEmployeeRepository {
   async update(id: string, data: IEmployee): Promise<IEmployee| null> {
     await this.employeeRepository.update(
       id,
-      data,
+      { ...data },
     );
 
     const employeeUpdated = await this.findById(id);
@@ -26,7 +26,7 @@ export class EmployeeRepository implements IEmployeeRepository {
   }
 
   async findAll(): Promise<IEmployee[]> {
-    const employees = await this.employeeRepository.find({});
+    const employees = await this.employeeRepository.find({ relations: ['company'] });
 
     return employees;
   }
@@ -36,6 +36,7 @@ export class EmployeeRepository implements IEmployeeRepository {
       where: {
         id,
       },
+      relations: ['company'],
     });
 
     return employeeFound;
@@ -47,11 +48,31 @@ export class EmployeeRepository implements IEmployeeRepository {
     );
   }
 
-  async findByCPF(cpf: string): Promise<IEmployee | null> {
+  async findByCPF(companyId: string, cpf: string): Promise<IEmployee | null> {
     const employeeFound = await this.employeeRepository.findOne({
       where: {
         cpf,
+        company: {
+          id: companyId,
+        },
       },
+      relations: ['company'],
+      loadRelationIds: true,
+    });
+
+    return employeeFound;
+  }
+
+  async findByEmail(companyId: string, email: string): Promise<IEmployee | null> {
+    const employeeFound = await this.employeeRepository.findOne({
+      where: {
+        email,
+        company: {
+          id: companyId,
+        },
+      },
+      relations: ['company'],
+      loadRelationIds: true,
     });
 
     return employeeFound;

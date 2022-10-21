@@ -22,9 +22,9 @@ export class BranchController {
     const id = request.params.companyId as string;
     const payload = request.body;
     const result = await this.createBranchUseCase.execute(id, payload);
-    return response.status(200).json(result);
+    return response.status(201).json(result);
   }
-  
+
   async update(request: Request, response: Response) {
     const id = request.params.companyId as string;
     const payload = request.body;

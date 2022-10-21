@@ -85,6 +85,13 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/gastrics/api/company/{companyId}/employee": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
     }
   },
   "components": {
