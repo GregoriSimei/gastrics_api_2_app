@@ -9,5 +9,6 @@ const employeeController = container.resolve(EmployeeController);
 
 route.post('/:companyId/employee', employeeController.create.bind(employeeController));
 route.put('/:companyId/employee', employeeController.update.bind(employeeController));
+route.get('/:companyId/employee', employeeController.get.bind(employeeController));
 
 export default route;
