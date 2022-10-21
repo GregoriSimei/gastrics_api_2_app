@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ICreateEmployee } from 'src/application/use-cases/employees/ICreatemployee';
+import { IDeleteEmployee } from 'src/application/use-cases/employees/IDeleteEmployee';
 import { IFindEmployee } from 'src/application/use-cases/employees/IFindEmployee';
 import { IUpdateEmployee } from 'src/application/use-cases/employees/IUpdateEmployee';
 import { inject, injectable } from 'tsyringe';
@@ -13,6 +14,8 @@ export class EmployeeController {
         private updateEmployeeUseCase: IUpdateEmployee,
         @inject('IFindEmployeeUseCase')
         private findEmployeeUseCase: IFindEmployee,
+        @inject('IDeleteEmployeeUseCase')
+        private deleteEmployeeUseCase: IDeleteEmployee,
   ) {}
 
   async create(request: Request, response: Response) {
@@ -33,6 +36,13 @@ export class EmployeeController {
     const companyId = request.params.companyId as string;
     const employeeId = request.query.id as string;
     const result = await this.findEmployeeUseCase.execute(companyId, employeeId);
+    response.status(201).json(result);
+  }
+
+  async delete(request: Request, response: Response) {
+    const companyId = request.params.companyId as string;
+    const employeeId = request.query.id as string;
+    const result = await this.deleteEmployeeUseCase.execute(companyId, employeeId);
     response.status(201).json(result);
   }
 }
