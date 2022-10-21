@@ -11,19 +11,22 @@ export class Cylinder implements ICylinder {
       id?: string | undefined;
 
     @Column()
-      ex_id!: string;
+      name!: string;
+
+    @Column({ name: 'ex_id' })
+      exId!: string;
+
+    @Column({ name: 'gas_type' })
+      gasType!: string;
 
     @Column()
       type!: string;
 
-    @Column()
-      weight_actual!: number;
+    @Column({ name: 'weight_actual', nullable: true })
+      weightActual!: number;
 
-    @Column()
-      weight_full!: number;
-
-    @Column()
-      weight_shell!: number;
+    @Column({ name: 'weight_shell' })
+      weightShell!: number;
 
     @ManyToOne(() => Branch, (branch) => branch.cylinders)
       branch!: IBranch;

@@ -1,7 +1,10 @@
+import { CylinderInfoTypes } from 'src/application/dtos/CylinderInfoTypes';
 import { ICylinder } from 'src/application/dtos/ICylinder';
+import { ICylinderInfo } from 'src/application/dtos/ICylinderInfo';
 import { ICylinderToCreate } from 'src/application/dtos/ICylinderToCreate';
 import { ICylinderRepository } from 'src/application/repositories/ICylinderRepository';
 import { Repository } from 'typeorm';
+import { cylindersType } from '../../../application/dtos/CylinderTypes';
 import { Cylinder } from '../models/Cylinder';
 import datasource from './typeORMClient';
 
@@ -21,7 +24,7 @@ export class CylinderRepository implements ICylinderRepository {
   async update(id: string, data: ICylinder): Promise<ICylinder | null> {
     await this.cylinderRepository.update(
       id,
-      data,
+      { ...data },
     );
 
     const cylinderUpdated = this.findById(id);
@@ -30,7 +33,7 @@ export class CylinderRepository implements ICylinderRepository {
   }
 
   async findAll(): Promise<ICylinder[]> {
-    const cylinders = await this.cylinderRepository.find({});
+    const cylinders = await this.cylinderRepository.find({ relations: ['branch'] });
     return cylinders;
   }
 
@@ -39,6 +42,7 @@ export class CylinderRepository implements ICylinderRepository {
       where: {
         id,
       },
+      relations: ['branch'],
     });
 
     return cylinderFound;
@@ -51,10 +55,39 @@ export class CylinderRepository implements ICylinderRepository {
   async findByExId(exId: string): Promise<ICylinder | null> {
     const cylinderFound = await this.cylinderRepository.findOne({
       where: {
-        ex_id: exId,
+        exId,
       },
+      relations: ['branch'],
     });
 
     return cylinderFound;
+  }
+
+  findCylinderInfoByType(type: string): ICylinderInfo | null {
+    const infoAccordingTypes: CylinderInfoTypes = {
+      p13: {
+        type: 'p13',
+        weightShell: 15,
+      },
+      p20v3: {
+        type: 'p20v3',
+        weightShell: 27,
+      },
+      p20v5: {
+        type: 'p20v5',
+        weightShell: 28,
+      },
+      p45: {
+        type: 'p45',
+        weightShell: 39,
+      },
+    };
+
+    const typeExist = cylindersType.find((cType) => cType === type);
+    if (!typeExist) {
+      return null;
+    }
+
+    return infoAccordingTypes[typeExist];
   }
 }
