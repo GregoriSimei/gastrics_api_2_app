@@ -17,7 +17,7 @@ export class EmployeeRepository implements IEmployeeRepository {
   async update(id: string, data: IEmployee): Promise<IEmployee| null> {
     await this.employeeRepository.update(
       id,
-      data,
+      { ...data },
     );
 
     const employeeUpdated = await this.findById(id);
