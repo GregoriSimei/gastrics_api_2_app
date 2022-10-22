@@ -1,8 +1,7 @@
 import { ICylinder } from 'src/application/dtos/ICylinder';
-import { IBranchRepository } from 'src/application/repositories/IBranchRepository';
 import { ICompanyRepository } from 'src/application/repositories/ICompanyRepository';
-import { ICylinderRepository } from 'src/application/repositories/ICylinderRepository';
 import { inject, injectable } from 'tsyringe';
+import { ValidationError } from 'yup';
 import { IFindCylinder } from './IFindCylinder';
 
 @injectable()
@@ -10,17 +9,32 @@ export class FindCylinderUseCase implements IFindCylinder {
   constructor(
     @inject('ICompanyRepository')
     private companyRepoitory: ICompanyRepository,
-    @inject('ICompanyRepository')
-    private branchRepoitory: IBranchRepository,
-    @inject('ICompanyRepository')
-    private cylinderRepoitory: ICylinderRepository,
   ) {}
 
-  execute(
+  async execute(
     companyId: string,
     branchId: string,
-    cilynderId: string,
+    cylinderId: string,
   ): Promise<ICylinder | ICylinder[] | null> {
-    throw new Error('Method not implemented.');
+    if (!companyId || !branchId) {
+      throw new ValidationError('Invalid Parameter');
+    }
+
+    const companyFound = await this.companyRepoitory.findById(companyId);
+    if (!companyFound) {
+      throw new ValidationError('Company not exist');
+    }
+
+    const branchFound = companyFound.branches?.find((branch) => branch.id === branchId);
+    if (!branchFound) {
+      throw new ValidationError('Branch not exist');
+    }
+
+    if (cylinderId) {
+      const cylinderFound = branchFound.cylinders?.find((cylinder) => cylinder.id === cylinderId);
+      return cylinderFound || null;
+    }
+
+    return branchFound.cylinders || [];
   }
 }
