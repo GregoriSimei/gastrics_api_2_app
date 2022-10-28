@@ -77,4 +77,16 @@ export class EmployeeRepository implements IEmployeeRepository {
 
     return employeeFound;
   }
+
+  async findByEmailAndPassword(email: string, password: string): Promise<IEmployee | null> {
+    const employeeFound = await this.employeeRepository.findOne({
+      where: {
+        email,
+        pass: password,
+      },
+      relations: ['company'],
+    });
+
+    return employeeFound;
+  }
 }

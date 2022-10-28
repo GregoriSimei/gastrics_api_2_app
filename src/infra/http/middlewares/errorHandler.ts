@@ -14,6 +14,7 @@ export const errorHandler = (
       message: error.message,
     });
   }
+
   if (error instanceof AppError) {
     if (error.statusCode === 500) {
       console.error(error.message, error.error);
@@ -23,7 +24,9 @@ export const errorHandler = (
       message: error.message,
     });
   }
+
   console.error(error.stack);
+
   return response.status(500).json({
     status: 'error',
     message: 'Internal server error',
