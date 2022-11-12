@@ -6,6 +6,7 @@ import company from './routes/company';
 import cylinder from './routes/cylinder';
 import employee from './routes/employee';
 import login from './routes/login';
+import iot from './routes/toIoT';
 
 const routes = Router();
 
@@ -14,5 +15,7 @@ routes.use('/company', branch);
 routes.use('/company', employee);
 routes.use('/company', cylinder);
 routes.use('/login', login);
+routes.use('/iot', iot);
 
 export { routes };
+
