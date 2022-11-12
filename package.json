@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn swagger && NODE_ENV=development nodemon src/server.ts",
+    "start": "yarn swagger && nodemon src/server.ts",
     "swagger": "node swagger.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
