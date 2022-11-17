@@ -1,8 +1,8 @@
 import { DataSourceOptions } from 'typeorm';
-import { Branch } from '../infra/repository/models/Branch';
-import { Company } from '../infra/repository/models/Company';
-import { Cylinder } from '../infra/repository/models/Cylinder';
-import { Employee } from '../infra/repository/models/Employee';
+import { Branch } from '../infra/repository/postgress/models/Branch';
+import { Company } from '../infra/repository/postgress/models/Company';
+import { Cylinder } from '../infra/repository/postgress/models/Cylinder';
+import { Employee } from '../infra/repository/postgress/models/Employee';
 
 export const typeormConfig: DataSourceOptions = {
   type: 'postgres',

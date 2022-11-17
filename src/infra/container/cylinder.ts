@@ -3,7 +3,7 @@ import { CreateCylinderUseCase } from '../../application/use-cases/cyliders/Crea
 import { DeleteCylinderUseCase } from '../../application/use-cases/cyliders/DeleteCylinder';
 import { FindCylinderUseCase } from '../../application/use-cases/cyliders/FindCylinder';
 import { UpdateCylinderUseCase } from '../../application/use-cases/cyliders/UpdateCylinder';
-import { CylinderRepository } from '../repository/database/CylinderRepository';
+import { CylinderRepository } from '../repository/postgress/database/CylinderRepository';
 
 container.register(
   'ICylinderRepository',

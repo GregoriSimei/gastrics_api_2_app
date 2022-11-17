@@ -3,7 +3,7 @@ import { CreateCompanyUseCase } from '../../application/use-cases/companies/Crea
 import { DeleteCompanyUseCase } from '../../application/use-cases/companies/DeleteCompany';
 import { FindCompanyUseCase } from '../../application/use-cases/companies/FindCompany';
 import { UpdateCompanyUseCase } from '../../application/use-cases/companies/UpdateCompany';
-import CompanyRepository from '../repository/database/CompanyRepository';
+import CompanyRepository from '../repository/postgress/database/CompanyRepository';
 
 container.register(
   'ICompanyRepository',

@@ -4,7 +4,7 @@ import { ICylinderInfo } from 'src/application/dtos/ICylinderInfo';
 import { ICylinderToCreate } from 'src/application/dtos/ICylinderToCreate';
 import { ICylinderRepository } from 'src/application/repositories/ICylinderRepository';
 import { Repository } from 'typeorm';
-import { cylindersType } from '../../../application/dtos/CylinderTypes';
+import { cylindersType } from '../../../../application/dtos/CylinderTypes';
 import { Cylinder } from '../models/Cylinder';
 import datasource from './typeORMClient';
 
