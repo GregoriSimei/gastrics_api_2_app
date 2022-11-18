@@ -6,7 +6,7 @@ import { ValidationError } from 'yup';
 import { IGetCurrentCylinderData } from './IGetCurrentCylinderData';
 
 @injectable()
-export class GetCurrentCylinderData implements IGetCurrentCylinderData {
+export class GetCurrentCylinderDataUseCase implements IGetCurrentCylinderData {
   constructor(
     @inject('IDateManager')
     private dateManager: IDateManager,

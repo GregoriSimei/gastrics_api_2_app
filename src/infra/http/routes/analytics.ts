@@ -7,6 +7,6 @@ const route = Router();
 
 const analyticController = container.resolve(AnalyticController);
 
-route.post('/cylinder', analyticController.getDayData.bind(analyticController));
+route.get('/cylinder', analyticController.getDayData.bind(analyticController));
 
 export default route;
