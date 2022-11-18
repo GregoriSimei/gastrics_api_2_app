@@ -131,7 +131,7 @@
       }
     },
     "/gastrics/api/iot/cylinder": {
-      "post": {
+      "get": {
         "description": "",
         "parameters": [],
         "responses": {}
