@@ -1,3 +1,4 @@
+import './analytics';
 import './branch';
 import './company';
 import './cylinder';
