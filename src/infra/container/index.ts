@@ -5,4 +5,5 @@ import './cylinder';
 import './employee';
 import './iot';
 import './login';
+import './providers';
 
