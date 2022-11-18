@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { ICompany } from '../../../application/dtos/ICompany';
-import { ICompanyRepository } from '../../../application/repositories/ICompanyRepository';
+import { ICompany } from '../../../../application/dtos/ICompany';
+import { ICompanyRepository } from '../../../../application/repositories/ICompanyRepository';
 import { Company } from '../models/Company';
 import datasource from './typeORMClient';
 

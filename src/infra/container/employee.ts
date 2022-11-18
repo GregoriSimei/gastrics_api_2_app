@@ -3,7 +3,7 @@ import { CreateEmployeeUseCase } from '../../application/use-cases/employees/Cre
 import { DeleteEmployeeUseCase } from '../../application/use-cases/employees/DeleteEmployee';
 import { FindEmployeeUseCase } from '../../application/use-cases/employees/FindEmployee';
 import { UpdateEmployeeUseCase } from '../../application/use-cases/employees/UpdateEmployee';
-import { EmployeeRepository } from '../repository/database/EmployeeRepository';
+import { EmployeeRepository } from '../repository/postgress/database/EmployeeRepository';
 
 container.register(
   'IEmployeeRepository',

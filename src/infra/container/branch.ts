@@ -3,7 +3,7 @@ import { CreateBranchUseCase } from '../../application/use-cases/branches/Create
 import { DeleteBranchUseCase } from '../../application/use-cases/branches/DeleteBranch';
 import { FindBranchUseCase } from '../../application/use-cases/branches/FindBranch';
 import { UpdateBranchUseCase } from '../../application/use-cases/branches/UpdateBranch';
-import { BranchRepository } from '../repository/database/BranchRepository';
+import { BranchRepository } from '../repository/postgress/database/BranchRepository';
 
 container.register(
   'IBranchRepository',
