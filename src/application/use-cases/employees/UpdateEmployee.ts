@@ -47,6 +47,7 @@ export class UpdateEmployeeUseCase implements IUpdateEmployee {
 
     const employeeToUpdate: IEmployee = {
       ...employee,
+      type: employee.type === '' ? employeeFound.type : employee.type,
       cpf: employeeFound.cpf,
       company: employeeFound.company,
       created_at: employeeFound.created_at,

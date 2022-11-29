@@ -43,12 +43,14 @@ export class CreateCylinderUseCase implements ICreateCylinder {
       throw new ValidationError('Type not exist');
     }
 
-    const { type, weightShell } = cylinderTypeInfo;
+    const { type, weightShell, maxWeight } = cylinderTypeInfo;
 
     const cylinderToCreate = cylinder;
     cylinderToCreate.branch = branchFound;
     cylinderToCreate.type = type;
     cylinderToCreate.weightShell = weightShell;
+    cylinderToCreate.maxWeight = maxWeight;
+    delete cylinderToCreate.id;
 
     const cylinderCreated = await this.cylinderRepoitory.create(cylinderToCreate);
 

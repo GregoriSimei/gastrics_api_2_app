@@ -6,7 +6,8 @@ export interface ICylinder extends IDatabaseItem {
     name: string;
     gasType: string;
     type: string;
-    weightActual: number;
+    maxWeight: number;
     weightShell: number;
     branch: IBranch;
+    alertWhen: number;
 }

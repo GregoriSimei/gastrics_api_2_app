@@ -1,4 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
+import { Alert } from '../infra/repository/postgress/models/Alert';
 import { Branch } from '../infra/repository/postgress/models/Branch';
 import { Company } from '../infra/repository/postgress/models/Company';
 import { Cylinder } from '../infra/repository/postgress/models/Cylinder';
@@ -16,6 +17,7 @@ export const typeormConfig: DataSourceOptions = {
     Branch,
     Cylinder,
     Employee,
+    Alert,
   ],
   synchronize: true,
 };

@@ -68,18 +68,27 @@ export class CylinderRepository implements ICylinderRepository {
       p13: {
         type: 'p13',
         weightShell: 15,
+        maxWeight: 35,
       },
       p20v3: {
         type: 'p20v3',
         weightShell: 27,
+        maxWeight: 47,
       },
       p20v5: {
         type: 'p20v5',
         weightShell: 28,
+        maxWeight: 48,
       },
       p45: {
         type: 'p45',
         weightShell: 39,
+        maxWeight: 59,
+      },
+      tcc: {
+        type: 'tcc',
+        weightShell: 0,
+        maxWeight: 0,
       },
     };
 

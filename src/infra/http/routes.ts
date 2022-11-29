@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import '../container/index';
 
+import alert from './routes/alert';
 import analytics from './routes/analytics';
 import branch from './routes/branch';
 import company from './routes/company';
@@ -15,6 +16,7 @@ routes.use('/company', company);
 routes.use('/company', branch);
 routes.use('/company', employee);
 routes.use('/company', cylinder);
+routes.use('/company', alert);
 routes.use('/login', login);
 routes.use('/iot', iot);
 routes.use('/analytics', analytics);
