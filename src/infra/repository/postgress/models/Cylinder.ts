@@ -25,6 +25,9 @@ export class Cylinder implements ICylinder {
     @Column({ name: 'weight_shell', nullable: true, type: 'float' })
       weightShell!: number;
 
+    @Column({ name: 'max_weight', type: 'float' })
+      maxWeight!: number;
+
     @Column({ name: 'alert_when', nullable: true })
       alertWhen!: number;
 

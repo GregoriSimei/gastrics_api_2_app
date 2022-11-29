@@ -49,6 +49,7 @@ export class UpdateCylinderUseCase implements IUpdateCylinder {
       exId: cylinderFound.exId,
       type: cylinderTypeInfo.type,
       weightShell: cylinderTypeInfo.weightShell,
+      maxWeight: cylinderTypeInfo.maxWeight,
       created_at: cylinderFound.created_at,
     };
 
