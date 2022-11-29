@@ -18,7 +18,7 @@ export class LoginUseCase implements ILogin {
   async execute(loginRequest: ILoginRequest): Promise<ILoginResponse> {
     const { email, pass } = loginRequest;
     if (!email || !pass) {
-      throw new ValidationError('Invali parameters');
+      throw new ValidationError('Invalid parameters');
     }
 
     const employeeFound = await this.employeeRepository.findByEmailAndPassword(email, pass);

@@ -136,6 +136,13 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/gastrics/api/analytics/cylinder": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
     }
   },
   "components": {

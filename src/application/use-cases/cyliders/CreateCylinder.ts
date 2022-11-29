@@ -49,6 +49,7 @@ export class CreateCylinderUseCase implements ICreateCylinder {
     cylinderToCreate.branch = branchFound;
     cylinderToCreate.type = type;
     cylinderToCreate.weightShell = weightShell;
+    delete cylinderToCreate.id;
 
     const cylinderCreated = await this.cylinderRepoitory.create(cylinderToCreate);
 

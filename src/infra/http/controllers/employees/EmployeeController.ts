@@ -29,20 +29,20 @@ export class EmployeeController {
     const companyId = request.params.companyId as string;
     const employee = request.body;
     const result = await this.updateEmployeeUseCase.execute(companyId, employee);
-    response.status(201).json(result);
+    response.status(200).json(result);
   }
 
   async get(request: Request, response: Response) {
     const companyId = request.params.companyId as string;
     const employeeId = request.query.id as string;
     const result = await this.findEmployeeUseCase.execute(companyId, employeeId);
-    response.status(201).json(result);
+    response.status(200).json(result);
   }
 
   async delete(request: Request, response: Response) {
     const companyId = request.params.companyId as string;
     const employeeId = request.query.id as string;
     const result = await this.deleteEmployeeUseCase.execute(companyId, employeeId);
-    response.status(201).json(result);
+    response.status(200).json(result);
   }
 }

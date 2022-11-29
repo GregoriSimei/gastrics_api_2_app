@@ -22,10 +22,10 @@ export class Cylinder implements ICylinder {
     @Column()
       type!: string;
 
-    @Column({ name: 'weight_actual', nullable: true })
+    @Column({ name: 'weight_actual', nullable: true, type: 'float' })
       weightActual!: number;
 
-    @Column({ name: 'weight_shell' })
+    @Column({ name: 'weight_shell', nullable: true, type: 'float' })
       weightShell!: number;
 
     @ManyToOne(() => Branch, (branch) => branch.cylinders)
