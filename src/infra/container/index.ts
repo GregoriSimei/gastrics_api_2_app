@@ -1,3 +1,4 @@
+import './alert';
 import './analytics';
 import './branch';
 import './company';
