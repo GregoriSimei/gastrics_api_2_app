@@ -130,6 +130,18 @@
         "responses": {}
       }
     },
+    "/gastrics/api/company/{companyId}/alert": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/gastrics/api/iot/cylinder": {
       "get": {
         "description": "",

@@ -9,6 +9,28 @@ export class AlertRepository implements IAlertRepository {
     private alertRepository: Repository<Alert> = datasource.getRepository(Alert),
   ) {}
 
+  async findOneByProperties(
+    companyId: string,
+    type: string,
+    dayDescription: string,
+    cylinderExId: string,
+  ): Promise<IAlert | null> {
+    const alertsFound = await this.alertRepository.findOne({
+      where: {
+        type,
+        dayDescription,
+        cylinderExId,
+        company: {
+          id: companyId,
+        },
+      },
+      relations: ['company'],
+      loadRelationIds: true,
+    });
+
+    return alertsFound;
+  }
+
   async findAllByCompanyId(companyId: string): Promise<IAlert[]> {
     const alertsFound = await this.alertRepository.find({
       where: {
