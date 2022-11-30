@@ -88,7 +88,7 @@ export class CylinderRepository implements ICylinderRepository {
       tcc: {
         type: 'tcc',
         weightShell: 0,
-        maxWeight: 0,
+        maxWeight: 10,
       },
     };
 
