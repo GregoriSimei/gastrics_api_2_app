@@ -57,7 +57,7 @@ export class CylinderRepository implements ICylinderRepository {
       where: {
         exId,
       },
-      relations: ['branch'],
+      relations: ['branch', 'branch.company'],
     });
 
     return cylinderFound;
