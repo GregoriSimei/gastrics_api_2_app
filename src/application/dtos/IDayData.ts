@@ -9,4 +9,6 @@ export interface IDayData {
   hoursLeft: number;
   iteration: number;
   updatedAt: Date;
+  exId?: string;
+  name?: string;
 }

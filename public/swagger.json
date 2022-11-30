@@ -162,6 +162,13 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/gastrics/api/analytics/branch": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
     }
   },
   "components": {
