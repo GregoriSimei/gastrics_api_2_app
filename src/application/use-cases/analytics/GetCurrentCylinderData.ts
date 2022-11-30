@@ -24,8 +24,34 @@ export class GetCurrentCylinderDataUseCase implements IGetCurrentCylinderData {
     const dateNow = new Date();
     const onlyStringDate = this.dateManager.getOnlyDateInfo(dateNow);
 
-    const dayDataFound: IDayData | undefined = cylinderAnalyticsFound
-      .daysData.find((item) => item.date === onlyStringDate);
+    const { daysData } = cylinderAnalyticsFound;
+
+    let dayDataFound: IDayData | null = null;
+    let oldDate = null;
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const dayData of daysData) {
+      if (dayData.date === onlyStringDate) {
+        dayDataFound = dayData;
+        break;
+      }
+
+      const actualDateSplited = dayData.date.split('-');
+      const actualDay = parseInt(actualDateSplited[2], 10);
+      const actualMonth = parseInt(actualDateSplited[1], 10) + 1;
+      const actualYear = parseInt(actualDateSplited[0], 10);
+      const actualDate = new Date(actualYear, actualMonth, actualDay);
+
+      if (!oldDate) {
+        oldDate = actualDate;
+        dayDataFound = dayData;
+      }
+
+      if (actualDate > oldDate) {
+        oldDate = actualDate;
+        dayDataFound = dayData;
+      }
+    }
 
     return dayDataFound || null;
   }

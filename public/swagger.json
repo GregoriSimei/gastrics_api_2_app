@@ -149,6 +149,13 @@
         "responses": {}
       }
     },
+    "/gastrics/api/iot/company/cylinder": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/gastrics/api/analytics/cylinder": {
       "get": {
         "description": "",
